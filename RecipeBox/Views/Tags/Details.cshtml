@@ -6,7 +6,7 @@
 @model RecipeBox.Models.Tag
 
 <h1>Tag Details</h1>
-<h3>@Tag.Category</h3>
+<h2>@Model.Category</h2>
 
 @if(@Model.JoinEntities.Count == 0)
 {
@@ -19,7 +19,7 @@ else
   <ul>
     @foreach(RecipeTag join in Model.JoinEntities)
     {
-      <li class="enlarge">@Html.ActionLink("@join.Recipe.Name", "Details", "Recipes", new { id = Model.RecipeId })</li>
+      <li class="enlarge">@Html.ActionLink("@join.Recipe.Name", "Details", "Recipes", new { id = join.Recipe.RecipeId })</li>
       @using (Html.BeginForm("DeleteJoin", "Recipes"))
       {
         @Html.Hidden("joinId", @join.RecipeTagId)

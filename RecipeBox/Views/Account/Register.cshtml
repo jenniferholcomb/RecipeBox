@@ -1,0 +1,39 @@
+@{
+  Layout = "_Layout";
+}
+
+@using RecipeBox.ViewModels
+@using RecipeBox.Models
+@model RegisterViewModel
+
+<h1>Register a new user</h1>
+<hr style="margin-bottom: 5%">
+
+@if(!ViewData.ModelState.IsValid)
+{
+  @Html.ValidationSummary("Please fix the following error(s), then resubmit form:")
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+  <p>@Html.LabelFor(user => user.Email)
+  @Html.TextBoxFor(user => user.Email)
+  </p>
+  <br>
+
+  <p style="padding-left: 4%">@Html.LabelFor(user => user.Password)
+  @Html.EditorFor(user => user.Password)</p>
+  <br>
+
+  <p style="padding-right: 2.5%">@Html.LabelFor(user => user.ConfirmPassword)
+  @Html.EditorFor(user => user.ConfirmPassword)</p>
+  <br>
+
+
+  @* @Html.Label("Name")
+  @Html.TextBox(ApplicationUser.Name) *@
+
+  <input type="submit" value="Register" />
+}
+
+<p class="enlarge">@Html.ActionLink("Home", "Index", "Home")</p>
