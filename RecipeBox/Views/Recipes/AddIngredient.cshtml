@@ -1,0 +1,13 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBox.Models.Ingredient
+
+@using (Html.BeginForm("Create", "Ingredient", FormMethod.Post))
+{
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+
+  <input type="submit" value="Add new ingredient" class="btn btn-default" />
+}

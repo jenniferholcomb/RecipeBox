@@ -19,16 +19,15 @@ else
   <ul>
     @foreach(RecipeTag join in Model.JoinEntities)
     {
-      <li class="enlarge">@Html.ActionLink("@join.Recipe.Name", "Details", "Recipes", new { id = join.Recipe.RecipeId })</li>
+      <li class="enlarge">@Html.ActionLink(@join.Recipe.Name, "Details", "Recipes", new { id = join.Recipe.RecipeId })</li>
       @using (Html.BeginForm("DeleteJoin", "Recipes"))
       {
         @Html.Hidden("joinId", @join.RecipeTagId)
         <input type="submit" value="Delete"/>
-
-        <p class="enlarge">@Html.ActionLink("Add another recipe", "AddRecipe", new { id = Model.TagId })</p>
       }
     }
   </ul>
+  <p class="enlarge">@Html.ActionLink("Add another recipe", "AddRecipe", new { id = Model.TagId })</p>
 }
 
 

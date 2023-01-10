@@ -116,5 +116,14 @@ namespace RecipeBox.Controllers
       return RedirectToAction("Index");
     }
 
+    [HttpPost]
+    public ActionResult AddRating(Recipe recipe)
+    {
+      // Recipe thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+     _db.Recipes.Update(recipe);
+      _db.SaveChanges();
+      return RedirectToAction("Details");
+    }
+
   }
 }
