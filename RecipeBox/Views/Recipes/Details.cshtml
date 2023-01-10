@@ -20,17 +20,17 @@
 }
 else
 {
-  <h2>Tagged as:</h2>
   <ul>
     @foreach(RecipeTag join in Model.JoinEntities)
     {
-      <li>Tag: @join.Tag.Category</li>
       @using (Html.BeginForm("DeleteJoin", "Recipes"))
       {
-        @Html.Hidden("joinId", @join.RecipeTagId)
+        <h3>Tag:
+        @join.Tag.Category
+        @Html.Hidden("joinId", @join.RecipeTagId) |
         <input type="submit" value="Delete" class="btn btn-danger"/>
-
-        <p class="enlarge">@Html.ActionLink("Add another tag", "AddTag", new { id = Model.RecipeId })</p>
+        </h3>
+        <p class="enlarge" style="padding-right: 3%; margin-top: 5%;">@Html.ActionLink("Add another tag", "AddTag", new { id = Model.RecipeId })</p>
       }
     }
   </ul>

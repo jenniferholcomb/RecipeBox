@@ -18,5 +18,9 @@ namespace RecipeBox.ViewModels
     [Display(Name = "Confirm Password")]
     [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
     public string ConfirmPassword { get; set; }
+
+    [Required]  //THIS IS REQUIRED FOR CUSTOM FIELD
+    [Display(Name = "Name")]
+    public string Name { get; set; }
   }
 }

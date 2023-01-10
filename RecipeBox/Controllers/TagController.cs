@@ -1,13 +1,16 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using RecipeBox.Models;
-using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
+using RecipeBox.Models;
 
 namespace RecipeBox.Controllers
 {
-  //[Authorize] - users only
+  [Authorize]
   public class TagsController : Controller
   {
     private readonly RecipeBoxContext _db;
@@ -17,13 +20,13 @@ namespace RecipeBox.Controllers
       _db = db;
     }
 
-    // [AllowAnonymous] - publicly accessible
+    [AllowAnonymous]
     public ActionResult Index()
     {
       return View(_db.Tags.ToList());
     }
 
-    // [AllowAnonymous]
+   [AllowAnonymous]
     public ActionResult Details(int id)
     {
       Tag thisTag = _db.Tags

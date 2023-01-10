@@ -3,7 +3,7 @@
 }
 
 @using RecipeBox.ViewModels
-@using RecipeBox.Models
+
 @model RegisterViewModel
 
 <h1>Register a new user</h1>
@@ -29,9 +29,8 @@
   @Html.EditorFor(user => user.ConfirmPassword)</p>
   <br>
 
-
-  @* @Html.Label("Name")
-  @Html.TextBox(ApplicationUser.Name) *@
+  @Html.LabelFor(user => user.Name)
+  @Html.TextBoxFor(user => user.Name)
 
   <input type="submit" value="Register" />
 }

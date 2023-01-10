@@ -26,8 +26,8 @@ namespace RecipeBox.Controllers
 
     public IActionResult Register()
     {
-      ApplicationUser user = new ApplicationUser { };
-      ViewBag.UserName = user.Name;
+      // ApplicationUser user = new ApplicationUser { };
+      // ViewBag.UserName = user.Name;
       return View();
     }
 
@@ -40,7 +40,8 @@ namespace RecipeBox.Controllers
       }
       else
       {
-        ApplicationUser user = new ApplicationUser { UserName = model.Email };  //create new applicationuser with email from form submission
+        //add: Name = mode.Name for name field in ApplicationUsers.cs
+        ApplicationUser user = new ApplicationUser { UserName = model.Email, Name = model.Name };  //create new applicationuser with email from form submission
         IdentityResult result = await _userManager.CreateAsync(user, model.Password); //creates user with provided password
         if (result.Succeeded) //checks to make sure password meets criteria
         {
@@ -82,6 +83,13 @@ namespace RecipeBox.Controllers
           return View(model);
         }
       }
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> LogOff()
+    {
+      await _signInManager.SignOutAsync();
+      return RedirectToAction("Index");
     }
   }
 }

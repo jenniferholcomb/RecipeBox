@@ -11,7 +11,7 @@ using RecipeBox.Models;
 
 namespace RecipeBox.Controllers
 {
-  //[Authorize]
+  [Authorize]
   public class RecipesController : Controller
   {
     private readonly RecipeBoxContext _db;
@@ -23,14 +23,14 @@ namespace RecipeBox.Controllers
       _db = db;
     }
 
-    // [AllowAnonymous]
+   [AllowAnonymous]
     public ActionResult Index()
     {
       List<Recipe> recipes = _db.Recipes.ToList();
       return View(recipes);
     }
 
-    // [AllowAnonymous]
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       Recipe thisRecipe = _db.Recipes
