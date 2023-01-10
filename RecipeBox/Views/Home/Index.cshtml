@@ -5,4 +5,32 @@
 @using RecipeBox.Models;
 
 <h1>Home</h1>
+<hr>
 
+<h2>Recipes</h2>
+@if (Model["recipes"].Length == 0)
+{
+  <p>No recipes have been added yet.</p>
+}
+<ul>
+  @foreach (Recipe recipe in Model["recipes"])
+  {
+    <li class="enlarge">@Html.ActionLink($"{@recipe.Name}", "Details", "Recipes", new { id = @recipe.RecipeId })</li>
+  }
+</ul>
+
+<h2 style="margin-top: 7%;">Tags</h2>
+@if (Model["tags"].Length == 0)
+{
+  <p>No tags have been added yet.</p>
+}
+<ul>
+  @foreach (Tag tag in Model["tags"])
+  {
+    <li class="enlarge">@Html.ActionLink($"{@tag.Category}", "Details", "Tags", new { id = @tag.TagId })</li>
+  }
+</ul>
+
+<p class="enlarge" style="margin-top: 5%;">@Html.ActionLink("Manage Recipes", "Index", "Recipes")</p>
+<p class="enlarge">@Html.ActionLink("Manage Tags", "Index", "Tags")</p>
+<p class="enlarge">@Html.ActionLink("Create or Manage an account", "Index", "Account")</p>

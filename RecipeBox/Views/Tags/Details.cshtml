@@ -1,0 +1,38 @@
+@{
+  Layout = "_Layout";
+}
+
+@using RecipeBox.Models
+@model RecipeBox.Models.Tag
+
+<h1>Tag Details</h1>
+<h3>@Tag.Category</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This tag does not have any recipes yet!</p>
+  <p class="enlarge">@Html.ActionLink("Add a recipe", "AddRecipe", new { id = Model.TagId })</p>
+}
+else
+{
+  <h4>Tagged Recipes:</h4>
+  <ul>
+    @foreach(RecipeTag join in Model.JoinEntities)
+    {
+      <li class="enlarge">@Html.ActionLink("@join.Recipe.Name", "Details", "Recipes", new { id = Model.RecipeId })</li>
+      @using (Html.BeginForm("DeleteJoin", "Recipes"))
+      {
+        @Html.Hidden("joinId", @join.RecipeTagId)
+        <input type="submit" value="Delete"/>
+
+        <p class="enlarge">@Html.ActionLink("Add another recipe", "AddRecipe", new { id = Model.TagId })</p>
+      }
+    }
+  </ul>
+}
+
+
+<p class="enlarge">@Html.ActionLink("Edit Tag", "Edit", new { id = Model.TagId})</p>
+
+<p class="enlarge">@Html.ActionLink("Back to Tags", "Index")</p>
+<p class="enlarge">@Html.ActionLink("Home", "Index", "Home")</p>

@@ -20,18 +20,14 @@ namespace RecipeBox.Controllers
     }
 
     [HttpGet("/")]
-    public async Task<ActionResult> Index()
+    public ActionResult Index()
     {
-      string userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
-      if (currentUser != null)
-      {
-        Recipe[] recipes = _db.Recipes
-                          .Where(entry => entry.User.Id == currentUser.Id)
-                          .ToArray();
-        model.Add("recipes", recipes)
-      }
-      return View();
+      Recipe[] recipes = _db.Recipes.ToArray();
+      Tag[] tags = _db.Tags.ToArray();
+      Dictionary<string,object[]> model = new Dictionary<string,object[]>();
+      model.Add("recipes", recipes);
+      model.Add("tags", tags);
+      return View(model);
     }
   }
 }

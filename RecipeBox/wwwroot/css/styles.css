@@ -1,0 +1,56 @@
+body{
+  background-color: #f5f6ea;
+  text-align: center;
+}
+
+h1{
+  font-size: 4.825rem;
+  font-weight: 600;
+  font-family: 'Concert One', cursive;
+  margin-bottom: 4%;
+}
+
+h2{
+  font-family: 'Concert One', cursive;
+  font-size: 3.8rem;
+  margin-bottom: 5%;
+}
+
+a{
+  color: black;
+  font-weight: 400;
+}
+
+a:hover{
+  color: black;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.enlarge {
+  transition: transform .3s;
+  color: black;
+}
+
+.enlarge:hover {
+  transform: scale(1.1);
+  color: black;
+}
+
+li{
+  font-family: 'Concert One', cursive;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: black;
+  padding-top: 1%;
+  padding-right: 5%;
+  list-style: none;
+}
+
+p{
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: black;
+  margin-top: 1%;
+}
+
