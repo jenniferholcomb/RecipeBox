@@ -46,14 +46,21 @@ namespace RecipeBox.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Recipe recipe)
+    public async Task<ActionResult> Create(Recipe recipe, int id)
     {
       string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       recipe.User = currentUser;
+      if (!ModelState.IsValid){
+        return View(recipe);
+      }else{
+
+            Recipe thisRecipe = _db.Recipes
+          .FirstOrDefault(recipe => recipe.RecipeId == id);
       _db.Recipes.Add(recipe);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+       return RedirectToAction("Create", "Ingredients");
+      }
     }
 
     public ActionResult Edit(int id)
@@ -116,14 +123,33 @@ namespace RecipeBox.Controllers
       return RedirectToAction("Index");
     }
 
+
     [HttpPost]
-    public ActionResult AddRating(Recipe recipe)
+     public ActionResult AddRatingPost(Recipe recipe, int id)
     {
-      // Recipe thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
-     _db.Recipes.Update(recipe);
+      Recipe thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      var name = recipe.Name;
+      var rating = recipe.Rating;
+      var ingredients = recipe.Ingredients;
+      var instructions = recipe.Instructions;
+
+      _db.Recipes.Update(recipe);
       _db.SaveChanges();
-      return RedirectToAction("Details");
+      return RedirectToAction("Details", new { id = recipe.RecipeId });
     }
 
+    [HttpPost]
+    public ActionResult AddIngredient(Recipe recipe, int id)
+    {
+      Recipe thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      var name = recipe.Name;
+      var rating = recipe.Rating;
+      var ingredients = recipe.Ingredients;
+      var instructions = recipe.Instructions;
+
+      _db.Recipes.Update(recipe);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }

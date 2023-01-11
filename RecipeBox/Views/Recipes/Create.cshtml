@@ -4,16 +4,14 @@
 
 @model RecipeBox.Models.Recipe
 
-@using (Html.BeginForm("Create", "Recipe", FormMethod.Post))
+@using (Html.BeginForm())
 {
+
   @Html.LabelFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name)
-
-  @Html.LabelFor(model => model.Instructions)
-  @Html.TextBoxFor(model => model.Instructions)
-
-  <input type="submit" value="Add new item" class="btn btn-default" />
+  <h3>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })</h3> 
+  <input type="submit" value="Add new recipe" class="btn btn-default" />
 }
-<p>@Html.ActionLink("Add Ingredient", "AddIngredient")</p>
+
 
 <p class="enlarge">@Html.ActionLink("Show all recipes", "Index")</p>

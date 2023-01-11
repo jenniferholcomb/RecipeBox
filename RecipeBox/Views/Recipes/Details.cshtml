@@ -10,17 +10,19 @@
 <h2>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h2>  
 <h4>@Html.DisplayNameFor(model => model.Rating): @Html.DisplayFor(model => model.Rating)</h4>
 
-@using (@Html.BeginForm("AddRating", "Recipes"))
+@using (@Html.BeginForm("AddRatingPost", "Recipes"))
 {
-  @* @Html.HiddenFor(model => model.RecipeId) *@
 
+  @Html.HiddenFor(model => model.RecipeId)
+  @Html.HiddenFor(model => model.Name)
+  @Html.HiddenFor(model => model.Ingredients)
+  @Html.HiddenFor(model => model.Instructions)
   @Html.LabelFor(model => model.Rating)
-  @Html.EditorFor(model => model.Rating)
+  @Html.EditorFor(model => model.Rating, new { @type="number", min="0", max="5"})
   <h3>@Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })</h3> 
-  <input type="submit" value="Add Rating">
+  <input type="submit" value="Update Rating" class="btn btn-info">
 }
 
- 
 
 @* <p>@Recipe.Ingredients</p>
 

@@ -7,8 +7,8 @@ namespace RecipeBox.Models
   {
     public int IngredientId { get; set; }
     public string Name { get; set; }
-    public int Amount { get; set; }
+    public int Quantity { get; set; }
     public string Measurement { get; set; }
-    public List<IngredientRecipe> JoinIngredients { get; set; }
+    public Recipe Recipe { get; set; }
   }
 }
